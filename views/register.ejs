@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>NexusPlus - Classified Ads and Listing Template</title>
+    <% include ./partial/headerlink %>
+  </head>
+  <body>
+    <% include ./partial/login-header %>
+    <!--====================================================================Container Section==========================================================================-->
+    <div class="page-header" style="background: url(img/banner1.jpg);">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="breadcrumb-wrapper">
+              <h2 class="product-title">Join Us</h2>
+              <ol class="breadcrumb">
+                <li><a href="#">Home /</a></li>
+                <li class="current">Register</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="register section-padding">
+      <div class="container">      
+        <center>
+          <% if(err){ %><p style="color:red"><%=JSON.stringify(err); %></p><% } %>          
+          <% if(msg){ %><p style="color:red"><%=JSON.stringify(msg);%></p><% } %>
+        </center>
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-12 col-xs-12">
+            <div class="register-form login-area">
+              <h3>Register</h3>
+              <form class="login-form" method="POST" action="/signup">
+                <div class="form-group">
+                  <div class="input-icon">
+                    <i class="lni-user"></i>
+                    <input type="text" class="form-control" name="name" placeholder="Name" required autofocus/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-icon">
+                    <i class="lni-envelope"></i>
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" required autocomplete="false" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-icon">
+                    <i class="lni-lock"></i>
+                    <input type="password" name="pass" class="form-control" placeholder="Password" required/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-icon">
+                    <i class="lni-lock"></i>
+                    <input name="cpass" type="password" class="form-control" placeholder="Retype Password" required/>
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkedall" name="agree" required />
+                    <label class="custom-control-label" for="checkedall">By registering, you accept our Terms & Conditions</label>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn btn-common log-btn">Register</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--====================================================================End Container Section==========================================================================-->
+
+    <% include ./partial/footer %>
+    <script>
+     
+    </script>
+  </body>
+</html>
