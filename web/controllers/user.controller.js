@@ -1,4 +1,4 @@
-const {categories} = require("../helpers/utlity");
+const { categories, countries } = require("../helpers/utlity");
 
 exports.dashboard = async (req, res, next) => {
   var sess = req.session;
@@ -22,6 +22,7 @@ exports.postAds = async (req, res, next) => {
       error: "",
       message: "",
       categories: await categories(),
+      countries: await countries(),
       user: sess.user
     });
   } else {

@@ -1,13 +1,12 @@
 const Post = require("../models/postads.model");
 const mongoose = require("mongoose");
 
-
 exports.getPosts = async (req, res, next) => {
   try {
-      const dbPosts = await Post.find();
-      res.status(200).json({...dbPosts});        
+    const dbPosts = await Post.find();
+    res.status(200).json({ ...dbPosts });
   } catch (e) {
-      res.status(500).json({ msg: e.message });
+    res.status(500).json({ msg: e.message });
   }
 };
 
@@ -28,20 +27,23 @@ exports.savePost = async (req, res, next) => {
       return res.json(response);
     } else {
       try {
-        
         const postads = new postads({
           _id: new mongoose.Types.ObjectId(),
-          title:req.body.title,
-          userid: req.sess.userid,
-          categoryid: req.categoryid,
-          location: req.body.location,
-          days: req.body.days,
-          description: req.body.description,
-          amount: req.body.amount,
-          photo: req.body.photo,
-          video: req.body.video
+          btitle: "",
+          userid: "",
+          categoryid: "",
+          subctid: "",
+          baddress: "",
+          bcountry: "",
+          bstate: "",
+          bcity: "",
+          bemail: "",
+          bphone: "",
+          burl: "",
+          images: "",
+          price: "",
+          description: ""
         });
-
       } catch (e) {
         res.status(500).json({ msg: e.message });
       }

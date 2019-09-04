@@ -1,7 +1,7 @@
 {
   "name": "nodemba",
   "version": "1.0.0",
-  "description": "",
+  "description": "MBA Search",
   "main": "mbasearch.js",
   "scripts": {
     "start": "node mbasearch-server.js",
@@ -29,5 +29,13 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarojpandeydb/gitmbasearch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sarojpandeydb/gitmbasearch/issues"
+  },
+  "homepage": "https://github.com/sarojpandeydb/gitmbasearch#readme"
 }

@@ -1,17 +1,17 @@
-const Category = require("../models/category.model");
+const Country = require("../models/country.model");
 const mongoose = require("mongoose");
 
-exports.getCategories = async (req, res, next) => {
+exports.getCountry = async (req, res, next) => {
   try {
-    const dbCats = await Category.find();
-    res.status(200).json({ ...dbCats });
+    const dbCountry = await Country.find();
+    res.status(200).json({ ...dbCountry });
   } catch (e) {
     res.status(500).json({ msg: e.message });
   }
 };
 
-exports.saveCategory = async (req, res, next) => {
-  req.check("categoryname", "Category name required").notEmpty();
+exports.saveCountry = async (req, res, next) => {
+  req.check("countryname", "Country name required").notEmpty();
   var errors = req.validationErrors();
   if (errors) {
     var response = { errors: [] };
@@ -22,12 +22,12 @@ exports.saveCategory = async (req, res, next) => {
     return res.json(response);
   } else {
     try {
-      const category = new Category({
+      const country = new Country({
         _id: new mongoose.Types.ObjectId(),
-        c_name: req.body.categoryname
+        country_name: req.body.countryname
       });
-      const savedCat = await category.save();
-      res.status(201).json({ ...savedCat._doc });
+      const savedCntry = await country.save();
+      res.status(201).json({ ...savedCntry._doc });
     } catch (e) {
       res.status(500).json({ msg: e.message });
     }

@@ -16,6 +16,10 @@ const config = require("./api/configs/database");
 //api routes handler
 const apiUserRoutes = require("./api/routes/user.route");
 const apiCategoryRoute = require("./api/routes/category.route");
+const apiSubCategoryRoute = require("./api/routes/sub-category.route");
+const apiCountryRoute = require("./api/routes/country.route");
+const apiStateRoute = require("./api/routes/state.route");
+const apiCityRoute = require("./api/routes/city.route");
 const apiPostRoute = require("./api/routes/post.route");
 
 //web routes handler
@@ -62,8 +66,12 @@ db.on("error", err => console.log(err));
 
 //api routes
 app.use("/api/user", apiUserRoutes);
-app.use("/api/category",apiCategoryRoute);
-app.use("/api/post",apiPostRoute);
+app.use("/api/category", apiCategoryRoute);
+app.use("/api/subcategory", apiSubCategoryRoute);
+app.use("/api/country", apiCountryRoute);
+app.use("/api/state", apiStateRoute);
+app.use("/api/city", apiCityRoute);
+app.use("/api/post", apiPostRoute);
 //web routes
 app.use("/", webRoutes);
 app.use("/user", webUserRoutes);
