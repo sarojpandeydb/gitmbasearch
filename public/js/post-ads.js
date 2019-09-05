@@ -2,17 +2,13 @@ $(document).ready(function() {
   $("#category-select").on("change", e => {
     var subCat = $("#subcat-select");
     let currCat = e.target.value;
-
     if (currCat) {
       var request = $.ajax({
         url: "/api/subcategory/" + currCat,
         method: "GET",
         dataType: "json"
       });
-
       request.done(function(msg) {
-        console.log(msg);
-
         if (msg.length > 0) {
           var output = [];
           $.each(msg, function(key, value) {
@@ -24,12 +20,11 @@ $(document).ready(function() {
                 "</option>"
             );
           });
-          subCat.html(output.join(""));
+          subCat.append(output.join(""));
         } else {
           subCat.html('<option value="">Sub Category not available</option>');
         }
       });
-
       request.fail(function(jqXHR, textStatus) {
         console.log("ERROR = " + textStatus);
       });
@@ -49,8 +44,6 @@ $(document).ready(function() {
       });
 
       request.done(function(msg) {
-        console.log(msg);
-
         if (msg.length > 0) {
           var output = [];
           $.each(msg, function(key, value) {
@@ -62,7 +55,7 @@ $(document).ready(function() {
                 "</option>"
             );
           });
-          currState.html(output.join(""));
+          currState.append(output.join(""));
         } else {
           currState.html('<option value="">State not available</option>');
         }
@@ -77,17 +70,13 @@ $(document).ready(function() {
   $("#state-select").on("change", e => {
     var currState = $("#select-city");
     let currSelect = e.target.value;
-
     if (currSelect) {
       var request = $.ajax({
         url: "/api/city/" + currSelect,
         method: "GET",
         dataType: "json"
       });
-
       request.done(function(msg) {
-        console.log(msg);
-
         if (msg.length > 0) {
           var output = [];
           $.each(msg, function(key, value) {
@@ -99,12 +88,11 @@ $(document).ready(function() {
                 "</option>"
             );
           });
-          currState.html(output.join(""));
+          currState.append(output.join(""));
         } else {
           currState.html('<option value="">City not available</option>');
         }
       });
-
       request.fail(function(jqXHR, textStatus) {
         console.log("ERROR = " + textStatus);
       });

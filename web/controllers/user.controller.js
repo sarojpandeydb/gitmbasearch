@@ -1,4 +1,4 @@
-const { categories, countries } = require("../helpers/utlity");
+const { categories, countries, getPosts } = require("../helpers/utlity");
 
 exports.dashboard = async (req, res, next) => {
   var sess = req.session;
@@ -7,6 +7,7 @@ exports.dashboard = async (req, res, next) => {
       title: "Dashboard",
       error: "",
       message: "",
+      posts: await getPosts(sess.user._id),
       user: sess.user
     });
   } else {

@@ -1,7 +1,3 @@
-const router = require("express").Router();
-const PostController = require("../controllers/post.controller");
-const multer = require("multer");
-const path = require("path");
 const storage = multer.diskStorage({
   destination: "./public/uploads/",
   filename: function(req, file, cb) {
@@ -17,7 +13,6 @@ const uploadfiles = multer({
     checkFileType(file, cb);
   }
 }).fields([{ name: "photos", maxCount: 5 }]);
-
 function checkFileType(file, cb) {
   const filetypes = /jpeg|jpg|png|gif/;
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -29,7 +24,4 @@ function checkFileType(file, cb) {
   }
 }
 
-router.get("/", PostController.getPosts);
-router.post("/", uploadfiles, PostController.savePost);
-
-module.exports = router;
+export default uploadfiles;

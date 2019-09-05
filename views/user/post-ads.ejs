@@ -28,15 +28,26 @@
         </div>
     </div>
     <div id="content" class="section-padding">
+        <center>
+          <% if(error){ %><p style="color:red"><%=error.errors; %></p><% } %>          
+          <% if(message){ %><p style="color:red"><%=message;%></p><% } %>
+
+          <% Object.keys(messages).forEach(function(type){ %>                  
+            <% messages[type].forEach(function(message){ %>
+            <p style="color:red"><%=message;%></p>
+            <% }) %>         
+            <% }) %>
+        </center>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-4 col-lg-3 page-sidebar">
                     <% include ../partial/aside %>
                 </div>
                 <div class="col-sm-12 col-md-8 col-lg-9">                
-                    <form class="" action="/" method="POST" enctype="multipart/form-data">
+                    <form action="/api/post" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" value="<%=user._id;%>" name="userid"/>
                         <div class="row page-content">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+                            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                                 <div class="inner-box">
                                     <div class="dashboard-box">
                                         <h2 class="dashbord-title">Business Listing Details </h2>                                
@@ -44,12 +55,12 @@
                                     <div class="dashboard-wrapper">
                                         <div class="form-group mb-3">
                                             <label class="control-label">Bisiness Title</label>
-                                            <input class="form-control input-md" name="title" placeholder="Title" type="text">
+                                            <input class="form-control input-md" name="btitle" placeholder="Title" type="text" required>
                                         </div>
                                         <div class="form-group mb-3 tg-inputwithicon">
                                             <label class="control-label">Categories</label>
                                             <div class="tg-select form-control">
-                                                <select id="category-select">
+                                                <select id="category-select" name="categoryid" required>
                                                     <option value="none">Select Categories</option>
                                                     <% categories.forEach(e=>{ %>
                                                         <option value="<%=e._id;%>"><%=e.c_name;%></option>
@@ -60,7 +71,7 @@
                                         <div class="form-group mb-3 tg-inputwithicon">
                                             <label class="control-label">Sub Categories</label>
                                             <div class="tg-select form-control">
-                                                <select id="subcat-select">
+                                                <select id="subcat-select" name="subctid" required>
                                                     <option value="none">Sub Categories</option>                                                                                             
                                                 </select>
                                             </div>
@@ -73,12 +84,12 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="control-label">Business Address</label>
-                                            <input class="form-control input-md" name="ddress" placeholder="Business Address" type="text">
+                                            <input class="form-control input-md" name="baddress" placeholder="Business Address" type="text" required>
                                         </div>
                                         <div class="form-group mb-3 tg-inputwithicon">
                                             <label class="control-label">Country</label>
                                             <div class="tg-select form-control">
-                                                <select id="country-select">
+                                                <select id="country-select" name="bcountry" required>
                                                     <option value="none">Select Country</option>
                                                      <% countries.forEach(e=>{ %>
                                                         <option value="<%=e._id;%>"><%=e.country_name;%></option>
@@ -90,7 +101,7 @@
                                         <div class="form-group mb-3 tg-inputwithicon">
                                             <label class="control-label">State</label>
                                             <div class="tg-select form-control">
-                                                <select id="state-select">
+                                                <select id="state-select" name="bstate" required>
                                                     <option value="none">Select State</option>
                                                 </select>
                                             </div>
@@ -98,45 +109,45 @@
                                         <div class="form-group mb-3 tg-inputwithicon">
                                             <label class="control-label">City</label>
                                             <div class="tg-select form-control">
-                                                <select id="select-city">
+                                                <select id="select-city" name="bcity" required>
                                                     <option value="none">Select City</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="control-label">Business Email*</label>
-                                            <input class="form-control input-md" name="phone" type="text">
+                                            <input class="form-control input-md" name="bemail" type="text" required>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="control-label">Business Phone*</label>
-                                            <input class="form-control input-md" name="phone" type="text">
+                                            <input class="form-control input-md" name="bphone" type="text" required>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="control-label">Website Link</label>
-                                            <input class="form-control input-md" name="Website Link" type="text">
+                                            <input class="form-control input-md" name="burl" placeholder="Website Url" type="text">
                                         </div>
                                         <div class="form-group md-3">
-                                            <section id="editor">
-                                                <div id="summernote"></div>
+                                            <section id="editor" name="desc">
+                                                <div id="summernote" ></div>
                                             </section>
                                         </div>
                                         <label class="tg-fileuploadlabel" for="tg-photogallery">
                                             <span class="btn btn-common">Select Files</span>
                                             <span>Maximum upload file size: 500 KB</span>
-                                            <input id="tg-photogallery" class="tg-fileinput" type="file" name="file">
+                                            <input id="tg-photogallery"  accept="image/*" name="photos" multiple class="tg-fileinput" type="file" required>
                                         </label>
                                         <div class="tg-checkbox">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="tg-agreetermsandrules">
-                                                <label class="custom-control-label" for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0);">Terms of Use &amp; Posting Rules</a></label>
+                                                <input type="checkbox" class="custom-control-input" value="true" name="termsncondition" id="tg-agreetermsandrules" required>
+                                                <label class="custom-control-label" for="tg-agreetermsandrules">I agree to all <a href="javascript:void(0)">Terms of Use &amp; Posting Rules</a></label>
                                             </div>
                                         </div>
-                                        <button class="btn btn-common" type="button">Post Ad</button>
+                                        <button class="btn btn-common" type="submit">Submit Listing</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                             <div class="inner-box">
                                 <div class="tg-contactdetail">
                                     <div class="dashboard-box">
