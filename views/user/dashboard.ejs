@@ -82,14 +82,13 @@
                                                 </th>
                                                 <th>Photo</th>
                                                 <th>Title</th>
-                                                <th>Category</th>
-                                                
+                                                <th>Category</th>                                                
                                                 <th>Price</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%posts.forEach(e=>{%>
+                                            <% posts.forEach(e => { %>
                                                 <tr data-category="active">
                                                     <td>
                                                         <div class="custom-control custom-checkbox">
@@ -98,13 +97,8 @@
                                                         </div>
                                                     </td>
                                                     <td class="photo"><img class="img-fluid" src="uploads/<%=e.images[0].filename;%>" alt=""></td>
-                                                    <td data-title="Title">
-                                                        <h3><%=e.btitle;%></h3>
-                                                        
-                                                        <span><%=(e.description) ? desc.substr(0,10) : "" ;%></span>
-                                                    </td>
-                                                    <td data-title="Category"><span class="adcategories">Laptops & PCs</span></td>
-                                                
+                                                    <td data-title="Title"><h3><%=e.btitle;%></h3></td>
+                                                    <td data-title="Category"><span class="adcategories"><%=e.c_name;%></span></td>
                                                     <td data-title="Price"><h3><%=e.price;%></h3></td>
                                                     <td data-title="Action">
                                                         <div class="btns-actions">
@@ -114,7 +108,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            <%})%>
+                                            <% }); %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -125,7 +119,6 @@
             </div>
         </div>
     <!--====================================================================End Container Section==========================================================================-->
-
     <% include ../partial/footer %>
   </body>
 </html>

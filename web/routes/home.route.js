@@ -8,6 +8,7 @@ router.get("/forgotpassword", HomeController.forgotpassword);
 router.get("/listings", HomeController.listings);
 router.get("/categories", HomeController.categories);
 router.get("/logout", HomeController.user_logout);
+router.get("/post/:id", HomeController.postdetails);
 
 router.post("/signup", HomeController.user_signup);
 router.post("/login", HomeController.user_signin);

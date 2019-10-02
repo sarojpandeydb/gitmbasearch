@@ -8,6 +8,9 @@
     />
     <title>Post Ads</title>
     <% include ../partial/headerlink %>
+    <style>
+        .panel-default .panel-heading{background:#f1f1f100;}
+    </style>
   </head>
   <body>
     <% include ../partial/login-header %>
@@ -127,9 +130,7 @@
                                             <input class="form-control input-md" name="burl" placeholder="Website Url" type="text">
                                         </div>
                                         <div class="form-group md-3">
-                                            <section id="editor" name="desc">
-                                                <div id="summernote" ></div>
-                                            </section>
+                                            <textarea id="summernote" name="desc"></textarea>
                                         </div>
                                         <label class="tg-fileuploadlabel" for="tg-photogallery">
                                             <span class="btn btn-common">Select Files</span>

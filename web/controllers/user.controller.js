@@ -3,11 +3,12 @@ const { categories, countries, getPosts } = require("../helpers/utlity");
 exports.dashboard = async (req, res, next) => {
   var sess = req.session;
   if (sess.hasOwnProperty("islogin") && sess.islogin == true) {
+    const post_data = await getPosts(sess.user._id);
     res.render("user/dashboard", {
       title: "Dashboard",
       error: "",
       message: "",
-      posts: await getPosts(sess.user._id),
+      posts: post_data.posts,
       user: sess.user
     });
   } else {
