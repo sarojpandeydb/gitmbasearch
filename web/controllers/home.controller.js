@@ -61,8 +61,10 @@ exports.categories = async(req, res, next) => {
 exports.postdetails = async(req, res, next) => {
     let data = [];
     if (req.params.id) {
-        data = await getPostDetails(req.params.id);
+        let list = await getPostDetails(req.params.id);
+        data = list.posts[0];
     }
+    console.log("hhhhhhh");
     console.log(data);
     res.render("postdetails", {
         title: "Post Details",
